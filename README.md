@@ -19,12 +19,18 @@ Oyuncu karakteri, Third Person Controller altyapısına sahiptir.
 + C tuşu toggle ile, Left Ctrl tuşu ise basılı tutularak geçici siper alma/crouch gerçekleştirilebilir. Siper alma ve Crouch birbirine bağlıdır. Karakterin önünde cover alabilceği bir nesne varsa cover alır yoksa croucha geçer. Eğer cover sırasında cover aldığı nesneden uzaklaşırsa otomatik olarak crouch pozisyonuna döner. Visibiltysi bu durum geçişlerine göre değişir.
 + Kamera sistemi, Third Person ve Aim Camera arasında geçiş yapabilen  dinamik bir Camera Switcher yapısına sahiptir.
 + Ateş etme (shooting) mekanikleri aktif olup, nişan alma sırasında kamera dinamik olarak yakınlaşır ve over the shoulder hissiyatı sağlanır. Eğer karakter eğim durumda değilse(Camera da AimCam de) karakter ateş edemez. 
-+ Avatar Mask ve Blend Tree yapılarını kullanan gelişmiş animasyon sistemi sayesinde karakterin yürüme, nişan alma, crouch,siper alma ve ateş etme hareketleri arasında akıcı geçişler sağlanmıştır.
++ Avatar Mask ve Blend Tree yapılarını kullanan gelişmiş animasyon sistemi sayesinde karakterin yürüme, nişan alma, crouch, siper alma ve ateş etme hareketleri arasında akıcı geçişler sağlanmıştır.
+<br>
+
+![Ateş Etme Mekaniği](screenshots/maculaShot.gif)
 
 ### Düşman (NPC) Yapay Zekâsı
 Düşman karakterleri, NavMesh Agent tabanlı bir navigasyon sistemi ile oyuncuyu tespit eder ve takip eder. Düşman davranışları; Idle, Patrol, Walk, Attack ve Death durumları arasında geçiş yapan bir Finite State Machine (FSM) yapısıyla kontrol edilmektedir.
 Enemy Controller script'i ve Animator parametreleri ile entegre çalışan bu sistem, düşmanların oyuncuya tepki vermesini, belirli alanlarda devriye gezmesini ve saldırı gerçekleştirmesini sağlar. Ayrıca düşmanlar, belirli bölgelerde Spawner sistemi aracılığıyla dinamik olarak oluşturulmaktadır.
 Düşman davranışları; Idle, Patrol, Chase, Attack ve Walk olmak üzere farklı durumlara (state) ayrılmıştır.
+<br>
+
+![Düşman ve Ölüm Mekaniği](screenshots/maculaDie.gif)
 
 ### Kullanıcı Arayüzü (UI)
 Kullanıcı arayüzü, oyuncuya oyun içi bilgileri sade ve okunabilir biçimde sunacak şekilde tasarlanmıştır.
@@ -38,6 +44,9 @@ Kullanıcı arayüzü, oyuncuya oyun içi bilgileri sade ve okunabilir biçimde 
 + Crosshair Seçimi: Oyuncu nişangah tasarımını kendi tercihlerine göre değiştirebilir.
 + Notification sistemi ile toplanan malzemeyi bildirim olarak gösterir.
 + Objective ile oyuncunun yapması gereken görevleri gösterir ve oyuncunun hikayede kaybolmasını engeller.
+<br>
+
+![Kullanıcı Arayüzü](screenshots/maculaUI.gif)
 
 
 ## Geliştirme Ortamı
@@ -104,17 +113,162 @@ Diyalog bitince "Delirme Anı (Delirium)" başlar: ekran titreşir, sesler boğu
 ### 4. Çözüm (Resolution) – Son Atış
 
  Oyuncu ateş ettiğinde ve Doktor'un canı sıfıra indiğinde: Doktor ölür, FinalConfrontation tüm sesleri ve efektleri durdurur, Zaman durur (Time.timeScale = 0f) ve oyun sona erer.
+ <br>
+ 
+ ![Oyunun Finali](screenshots/maculaWin.gif)
 
 ##  Sistem Blok Diyagramı
 
 Aşağıda *Project: Macula* oyununda kullanılan temel sistem bileşenleri ve aralarındaki ilişki gösterilmektedir:
 
-<!-- Not: Aşağıdaki link bir GitHub commit sayfasına gidiyor, ham (raw) bir görsel dosyası değil — bu yüzden görsel şu an render olmuyor.
-Görseli repoya (örn. docs/diagrams/system_diagram.png) yükleyip aşağıdaki gibi referans vermeni öneririm:
-![Blok Diyagramı](docs/diagrams/system_diagram.png)
--->
-![Blok Diyagramı](https://github.com/sudenazguldal/YAZ-LAB/commit/3e734042b426cecf38f33202d616103f321cbb3c)
+```mermaid
+flowchart TB
 
+    %% =========================
+    %% PLAYER
+    %% =========================
+    Player["🎮 PLAYER<br/>Oyuncu Sistemi"]
+
+    PlayerController["Player Controller<br/>Hareket • Koşma • Crouch • Cover"]
+    Camera["Camera Switcher<br/>Third Person • Aim Camera"]
+    Shooting["Player Shooting<br/>Nişan Alma • Ateş Etme"]
+    Animation["Animator<br/>Blend Tree • Avatar Mask"]
+
+    Player --> PlayerController
+    Player --> Camera
+    Player --> Shooting
+    Player --> Animation
+
+    %% =========================
+    %% ENEMY AI
+    %% =========================
+    Enemy["👾 ENEMY AI<br/>Düşman Sistemi"]
+
+    NavMesh["NavMesh Agent<br/>Navigasyon"]
+    FSM["Finite State Machine<br/>Idle • Patrol • Chase • Attack • Death"]
+    EnemyController["Enemy Controller<br/>Davranış Yönetimi"]
+    Spawner["Spawner System<br/>Düşman Oluşturma"]
+
+    Enemy --> NavMesh
+    Enemy --> FSM
+    Enemy --> EnemyController
+    Enemy --> Spawner
+
+    %% =========================
+    %% CORE GAMEPLAY
+    %% =========================
+    Core["⚙️ CORE GAMEPLAY SYSTEMS"]
+
+    UIManager["UIManager<br/>UI • Objective • Notification • Dialogue"]
+    Inventory["Inventory / Item System<br/>Eşya Toplama • Saklama • Kullanma"]
+    SaveLoad["Save / Load System<br/>Oyun İlerlemesi • Oyuncu Verileri"]
+    Final["FinalConfrontation<br/>Final Diyaloğu • Delirium • Son Atış"]
+
+    Core --> UIManager
+    Core --> Inventory
+    Core --> SaveLoad
+    Core --> Final
+
+    %% =========================
+    %% UI
+    %% =========================
+    UI["🖥️ USER INTERFACE"]
+
+    Health["Health Bar"]
+    Ammo["Ammo Display"]
+    Menus["Main Menu • Pause Menu"]
+    SettingsNode["Settings"]
+    Crosshair["Crosshair Selection"]
+    Objective["Objective"]
+    Notification["Notification"]
+
+    UI --> Health
+    UI --> Ammo
+    UI --> Menus
+    UI --> SettingsNode
+    UI --> Crosshair
+    UI --> Objective
+    UI --> Notification
+
+    %% =========================
+    %% AUDIO
+    %% =========================
+    Audio["🔊 AUDIO SYSTEM"]
+
+    AudioMixer["Audio Mixer"]
+    Music["Background Music"]
+    SFX["Sound Effects"]
+    DynamicAudio["Dynamic Music Transitions"]
+
+    Audio --> AudioMixer
+    Audio --> Music
+    Audio --> SFX
+    Audio --> DynamicAudio
+
+    %% =========================
+    %% ENVIRONMENT
+    %% =========================
+    Environment["🏚️ GAME ENVIRONMENT"]
+
+    Level["Level / Scene"]
+    Cover["Cover Objects"]
+    SpawnPoints["Spawn Areas"]
+    Lighting["Lighting & Atmosphere"]
+
+    Environment --> Level
+    Environment --> Cover
+    Environment --> SpawnPoints
+    Environment --> Lighting
+
+    %% =========================
+    %% RELATIONSHIPS
+    %% =========================
+
+    PlayerController --> Animation
+    Camera --> Shooting
+    Shooting --> Enemy
+
+    EnemyController --> FSM
+    FSM --> NavMesh
+    Spawner --> Enemy
+
+    PlayerController --> UIManager
+    Shooting --> UIManager
+    Inventory --> UIManager
+    Final --> UIManager
+
+    UIManager --> UI
+
+    UI --> SettingsNode
+    UI --> Audio
+
+    SaveLoad --> Inventory
+    SaveLoad --> PlayerController
+
+    Environment --> PlayerController
+    Environment --> Enemy
+
+    Final --> Shooting
+    Final --> Audio
+
+    %% =========================
+    %% STYLE
+    %% =========================
+
+    classDef player fill:#e3f2fd,stroke:#1565c0,stroke-width:2px;
+    classDef enemy fill:#ffebee,stroke:#c62828,stroke-width:2px;
+    classDef core fill:#f3e5f5,stroke:#6a1b9a,stroke-width:2px;
+    classDef ui fill:#fff3e0,stroke:#ef6c00,stroke-width:2px;
+    classDef audio fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px;
+    classDef environment fill:#fce4ec,stroke:#ad1457,stroke-width:2px;
+
+    class Player,PlayerController,Camera,Shooting,Animation player;
+    class Enemy,NavMesh,FSM,EnemyController,Spawner enemy;
+    class Core,UIManager,Inventory,SaveLoad,Final core;
+    class UI,Health,Ammo,Menus,SettingsNode,Crosshair,Objective,Notification ui;
+    class Audio,AudioMixer,Music,SFX,DynamicAudio audio;
+    class Environment,Level,Cover,SpawnPoints,Lighting environment;
+```
 
 ##  Karşılaşılan Zorluklar ve Çözümler
 * Enemy'ler oyuncuyu sürekli takip edecek şekilde ayarlandığından, saldırı durumundayken oyuncu hareket ettiğinde kayarak takip ediyorlardı. İki gün süren uğraşlarım sonucunda, sorunun animatördeki "Has Exit Time" seçeneğini kapatmamla düzeldiğini fark ettim.
