@@ -1,3 +1,13 @@
+# Project: Macula
+
+Third Person Survival/Gerilim oyunu — Unity 6000.0.58f1 LTS ile geliştirilmiştir.
+
+## Geliştirici Ekibi
+Bu proje 3 kişilik bir ekip tarafından geliştirilmiştir:
+- Sudenaz Güldal — Game Design, Narrative & Gameplay - @sudenazguldal
+- Melike Kır — Enemy AI & Combat Systems - @melike-kIr
+- Merve Gazioğlu — UI/UX Design & System Development - @merwf
+
 ## Oyunun Özellikleri
 Bu proje, TPS türünün temel mekaniklerini barındıran, yapay zekâ destekli düşman karakterler (NPC) içeren bir oyun geliştirmeyi amaçlamaktadır. 
 Geliştirilen oyun, oyuncuya temel TPS deneyimini sunarken; kamera, hareket, animasyon, ateş etme ve siper alma sistemleriyle birlikte eksiksiz bir oynanış akışı sağlamaktadır. Oyun PC platformu için geliştirilmiş olup, Unity oyun motoru kullanılarak inşa edilmiştir.
@@ -13,7 +23,7 @@ Oyuncu karakteri, Third Person Controller altyapısına sahiptir.
 
 ### Düşman (NPC) Yapay Zekâsı
 Düşman karakterleri, NavMesh Agent tabanlı bir navigasyon sistemi ile oyuncuyu tespit eder ve takip eder. Düşman davranışları; Idle, Patrol, Walk, Attack ve Death durumları arasında geçiş yapan bir Finite State Machine (FSM) yapısıyla kontrol edilmektedir.
-Enemy Controller script’i ve Animator parametreleri ile entegre çalışan bu sistem, düşmanların oyuncuya tepki vermesini, belirli alanlarda devriye gezmesini ve saldırı gerçekleştirmesini sağlar. Ayrıca düşmanlar, belirli bölgelerde Spawner sistemi aracılığıyla dinamik olarak oluşturulmaktadır.
+Enemy Controller script'i ve Animator parametreleri ile entegre çalışan bu sistem, düşmanların oyuncuya tepki vermesini, belirli alanlarda devriye gezmesini ve saldırı gerçekleştirmesini sağlar. Ayrıca düşmanlar, belirli bölgelerde Spawner sistemi aracılığıyla dinamik olarak oluşturulmaktadır.
 Düşman davranışları; Idle, Patrol, Chase, Attack ve Walk olmak üzere farklı durumlara (state) ayrılmıştır.
 
 ### Kullanıcı Arayüzü (UI)
@@ -60,24 +70,24 @@ Tür: Üçüncü Şahıs (TPS) – Hayatta Kalma / Gerilim
 
 ### 1. Giriş (Prologue)
 
-Oyun, Polis Memuru karakterinin, terk edilmiş ve lanetli olarak bilinen “Horror Mansion” bölgesine tekrar gönderilmesiyle başlar. Merkez, konaktan gelen “asılsız çığlık” ihbarlarını araştırmaktadır.
-Ancak karakterin bu eve gelişi tesadüf değildir. Oyuncu, Doktor’un deneylerinden “o gece” kaçmayı başaran tek “kusurlu” denektir. Gelen ihbarlar aslında Doktor’un, kaçan deneği (oyuncuyu) geri çağırma yöntemidir.
+Oyun, Polis Memuru karakterinin, terk edilmiş ve lanetli olarak bilinen "Horror Mansion" bölgesine tekrar gönderilmesiyle başlar. Merkez, konaktan gelen "asılsız çığlık" ihbarlarını araştırmaktadır.
+Ancak karakterin bu eve gelişi tesadüf değildir. Oyuncu, Doktor'un deneylerinden "o gece" kaçmayı başaran tek "kusurlu" denektir. Gelen ihbarlar aslında Doktor'un, kaçan deneği (oyuncuyu) geri çağırma yöntemidir.
 
 ### 2. Yükseliş (Rising Action)
 
 Evle Yüzleşme: Oyuncu konağa yaklaştıkça geçmiş travmaları tetiklenir.
-Diyalog: “Yine mi bu ev?... Biliyorum, bu lanet yerin benimle işi daha bitmedi.”
+Diyalog: "Yine mi bu ev?... Biliyorum, bu lanet yerin benimle işi daha bitmedi."
 
-Sesin Keşfi: Evin içinden gelen ağlama seslerinin “asılsız” değil, gerçek olduğu fark edilir.
-Diyalog: “Kahretsin... İşte o ses. Demek ihbarlar... bu kez gerçekti.”
+Sesin Keşfi: Evin içinden gelen ağlama seslerinin "asılsız" değil, gerçek olduğu fark edilir.
+Diyalog: "Kahretsin... İşte o ses. Demek ihbarlar... bu kez gerçekti."
 
-Tuzak: Oyuncu ana kapıyı açtığında Doktor’un tuzağı tetiklenir; zombiler serbest kalır, müzik gerilime dönüşür.
-Görev: “Kütüphaneye ulaş.”
-Diyalog: “Yine başlıyor... Olamaz, yine o geceki gibi! Kütüphaneye ulaşmam lazım... Yan kapıdan!”
+Tuzak: Oyuncu ana kapıyı açtığında Doktor'un tuzağı tetiklenir; zombiler serbest kalır, müzik gerilime dönüşür.
+Görev: "Kütüphaneye ulaş."
+Diyalog: "Yine başlıyor... Olamaz, yine o geceki gibi! Kütüphaneye ulaşmam lazım... Yan kapıdan!"
 
 Kütüphane kapısına ulaşan oyuncu kapının kilitli olduğunu görür.
-Diyalog: “Kilitli... Tabii ki kilitli. Biliyordum... Beni yine buraya çekeceğini biliyordum. 'O gece' yarım kalan hesabı bitirmenin vakti geldi, Doktor.”
-Görev Güncellemesi: “Anahtarı bul.”
+Diyalog: "Kilitli... Tabii ki kilitli. Biliyordum... Beni yine buraya çekeceğini biliyordum. 'O gece' yarım kalan hesabı bitirmenin vakti geldi, Doktor."
+Görev Güncellemesi: "Anahtarı bul."
 
 
 ### 3. Zirve (Climax) – Yüzleşme
@@ -86,25 +96,30 @@ Oyuncu anahtarı bulur ve Kütüphane kapısını açar. Bu anda FinalConfrontat
 Oyuncu kontrolü devre dışı bırakılır, kamera sabitlenir.
 
 Diyalog başlar:
-Doktor: “İnanılmaz. Bütün kusursuz yaratıklarımın arasından sıyrılıp yine geldin. Sen bu deneyin en inatçı çarpıklığısın.”
-Oyuncu: “Deney bitti, Doktor. Yarım kalan ne varsa bu gece sona erecek.”
+Doktor: "İnanılmaz. Bütün kusursuz yaratıklarımın arasından sıyrılıp yine geldin. Sen bu deneyin en inatçı çarpıklığısın."
+Oyuncu: "Deney bitti, Doktor. Yarım kalan ne varsa bu gece sona erecek."
 
-Diyalog bitince “Delirme Anı (Delirium)” başlar: ekran titreşir, sesler boğulur, ağlama sesi duyulur. Oyuncu, Doktor’a nişan almak zorundadır.
+Diyalog bitince "Delirme Anı (Delirium)" başlar: ekran titreşir, sesler boğulur, ağlama sesi duyulur. Oyuncu, Doktor'a nişan almak zorundadır.
 
 ### 4. Çözüm (Resolution) – Son Atış
 
- Oyuncu ateş ettiğinde ve Doktor’un canı sıfıra indiğinde: Doktor ölür, FinalConfrontation tüm sesleri ve efektleri durdurur, Zaman durur (Time.timeScale = 0f) ve oyun sona erer.
+ Oyuncu ateş ettiğinde ve Doktor'un canı sıfıra indiğinde: Doktor ölür, FinalConfrontation tüm sesleri ve efektleri durdurur, Zaman durur (Time.timeScale = 0f) ve oyun sona erer.
 
 ##  Sistem Blok Diyagramı
 
 Aşağıda *Project: Macula* oyununda kullanılan temel sistem bileşenleri ve aralarındaki ilişki gösterilmektedir:
+
+<!-- Not: Aşağıdaki link bir GitHub commit sayfasına gidiyor, ham (raw) bir görsel dosyası değil — bu yüzden görsel şu an render olmuyor.
+Görseli repoya (örn. docs/diagrams/system_diagram.png) yükleyip aşağıdaki gibi referans vermeni öneririm:
+![Blok Diyagramı](docs/diagrams/system_diagram.png)
+-->
 ![Blok Diyagramı](https://github.com/sudenazguldal/YAZ-LAB/commit/3e734042b426cecf38f33202d616103f321cbb3c)
 
 
 ##  Karşılaşılan Zorluklar ve Çözümler
-* Enemy'ler oyuncuyu sürekli takip edecek şekilde ayarlandığından, saldırı durumundayken oyuncu hareket ettiğinde kayarak takip ediyorlardı. İki gün süren uğraşlarım sonucunda, sorunun animatördeki “Has Exit Time” seçeneğini kapatmamla düzeldiğini fark ettim.
+* Enemy'ler oyuncuyu sürekli takip edecek şekilde ayarlandığından, saldırı durumundayken oyuncu hareket ettiğinde kayarak takip ediyorlardı. İki gün süren uğraşlarım sonucunda, sorunun animatördeki "Has Exit Time" seçeneğini kapatmamla düzeldiğini fark ettim.
 * Projemiz düz bir zeminden oluşmadığı için, NavMesh Surface yere yerleştirilen küçük objeleri de dahil ediyordu. Bu durum, düşmanların bazen havada durmasına veya bazı bölgelerde geçişleri engel olarak algılayıp NavMesh yüzeyinin birleşmemesine neden oluyordu. İlk etapta tek tek duvarları ve yerdeki küçük eşyaları kaldırarak sorunu çözmeye çalıştım bu çözümün sonucunda haritanın anlamsız yerlerinde ev eşyaları bulmamızla sonladı (çalılıkların arasında uçan kitaplar vb.);  asıl çözümün, AI Navigation ayarlarını küçülterek sağlandığını fark ettim.
-* Enemy’lerin animasyonlarında zaman zaman beklenmeyen hatalar oluşuyor. Bazen animasyonlar düzgün şekilde çalışırken, bazen de hareketler yanlış bir biçimde tekrar ediyor. Bu sorunun nedenini tam olarak tespit edemedim.
+* Enemy'lerin animasyonlarında zaman zaman beklenmeyen hatalar oluşuyor. Bazen animasyonlar düzgün şekilde çalışırken, bazen de hareketler yanlış bir biçimde tekrar ediyor. Bu sorunun nedenini tam olarak tespit edemedim.
 * Karakter crouch pozisyonuna girip haraket edince sol elı anlamsız bir şekilde havaya kaldırıp görüntünün gerçekçiliğini bozuyordu, avatar mask kullanarak sadece sol eli etkileyen bir layer oluşturup çözdüm.
 * Bulduğum animasyonlarla karakterlerin root sisteminin isimlendirmesi uyuşmuyordu. Blender kullanarak kemikleri tekrar isimlendirdim. 2 günlük bu emeğin sonunda başka karakter kullanmaya karar verip olası yeni sounları çözdüm.
 * Objective, Notification, Dialogueların hepsini ayrı ayrı yerlerden kontrol etmek zor ve çok hata çıakrtan bir sistem olduğu için hepsini bir UIManager altında birleştirdim.
@@ -114,7 +129,7 @@ Aşağıda *Project: Macula* oyununda kullanılan temel sistem bileşenleri ve a
 * ### MERGE
 ## Literatür Taraması 
 | **Özellik**        | **Projemiz (Project: Macula)**                     | **Resident Evil 2 (Remake)**            | **Silent Hill 2 (Remake)**        | **The Evil Within**            | **The Last of Us (Part I)**   |
-| ------------------ | -------------------------------------------------- | --------------------------------------- | --------------------------------- | ------------------------------ | ----------------------------- |
+| ------------------ | -------------------------------------------------- | --------------------------------------- | --------------------------------- | ------------------------------ | ------------------------------ |
 | **Oyun Motoru**    | Unity 6                                            | RE Engine                               | Unreal Engine 5                   | id Tech 5 (Modifiye)           | Naughty Dog Engine            |
 | **Ana Tema**       | Psikolojik Gerilim (Deney, Travma)                 | Hayatta Kalma Korkusu (Biyolojik Silah) | Psikolojik Korku (Kişisel Travma) | Psikolojik Korku (Görsel/Gore) | Hayatta Kalma (Anlatı Odaklı) |
 | **Kamera**         | TPS (Omuz Üstü Aim)                                | TPS (Omuz Üstü Aim)                     | TPS (Omuz Üstü)                   | TPS (Omuz Üstü)                | TPS (Omuz Üstü)               |
@@ -148,7 +163,7 @@ Bu esneklik, türün birçok örneğinde bulunmayan bir kullanıcı deneyimi sa�
 🔹 Bu özellik, The Last of Us ve Resident Evil 2 Remake gibi modern TPS oyunlarında dahi nadir görülen bir çift kontrol seçeneği sunar.
 
 ### 4. Settings Ayarları 
-Modern oyunlarda “Settings” menüsü yalnızca ses ve grafik ayarlarını değil, erişilebilirlik ve kişiselleştirme seçeneklerini de içerir.
+Modern oyunlarda "Settings" menüsü yalnızca ses ve grafik ayarlarını değil, erişilebilirlik ve kişiselleştirme seçeneklerini de içerir.
 Projemizde:
 * Ses Kontrolleri: Master, Müzik, SFX ayrı ayrı ayarlanabilir.
 * Görüntü Kalitesi: Kalite seviyeleri ve tam ekran seçenekleri.
@@ -164,8 +179,8 @@ Projemizde bu sistem henüz uygulanmamıştır; ancak ilerleyen aşamalarda havu
 🔹 Bu, The Evil Within gibi çok düşman içeren sahnelerde kullanılan optimizasyon tekniklerinin sadeleştirilmiş versiyonudur.
 
 ### 6. Harita ve Atmosfer Tasarımı
-Proje, Resident Evil 2 ve Silent Hill 2’deki gibi kapalı, baskılayıcı mekân hissi yaratmayı amaçlamaktadır.
-Yalnızca “Korku Konağı” gibi küçük ama detaylı bir alan tasarımıyla, narratif yoğunluk (hikaye odaklı deneyim) ön plana çıkarılmıştır.
+Proje, Resident Evil 2 ve Silent Hill 2'deki gibi kapalı, baskılayıcı mekân hissi yaratmayı amaçlamaktadır.
+Yalnızca "Korku Konağı" gibi küçük ama detaylı bir alan tasarımıyla, narratif yoğunluk (hikaye odaklı deneyim) ön plana çıkarılmıştır.
 
 🔹 Küçük alan + yüksek detay, performansı artırırken atmosfer derinliğini korur.
 
@@ -173,4 +188,4 @@ Yalnızca “Korku Konağı” gibi küçük ama detaylı bir alan tasarımıyla
 Projemiz, 2D arka plan müziği ile 3D çevresel ses sistemini birleştirir.
 Oyun içi müzik geçişleri, oyuncunun bulunduğu alana ve duruma göre dinamik olarak değişmektedir.
 
-🔹 Bu yaklaşım, AAA oyunlardaki karmaşık “adaptive audio” sisteminin basitleştirilmiş bir eğitim versiyonudur.
+🔹 Bu yaklaşım, AAA oyunlardaki karmaşık "adaptive audio" sisteminin basitleştirilmiş bir eğitim versiyonudur.
